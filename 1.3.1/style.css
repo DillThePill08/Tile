@@ -1,0 +1,102 @@
+body {
+    background-color: #1F1F2F;
+    padding: 0 20px;
+}
+
+h1, p, a {
+    color: #AFAFAF;
+}
+
+.tile {
+    width: 22px;
+    height: 22px;
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding: 0px;
+    border: 1px solid;
+    white-space: nowrap;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.editor-container {
+    display: grid;
+    gap: 0px;
+}
+
+.subtile {
+    height: 40px;
+    width: 40px;
+    border: 1px solid;
+}
+
+._ {
+    background-position: 0 0;
+}
+
+._0000 {
+    background-position: -22px 0;
+}
+
+._0001 {
+    background-position: -44px 0;
+}
+
+._0010 {
+    background-position: -66px 0;
+}
+
+._0011 {
+    background-position: -88px 0;
+}
+
+._0100 {
+    background-position: -110px 0;
+}
+
+._0101 {
+    background-position: -132px 0;
+}
+
+._0110 {
+    background-position: -154px 0;
+}
+
+._0111 {
+    background-position: -176px 0;
+}
+
+._1000 {
+    background-position: -198px 0;
+}
+
+._1001 {
+    background-position: -220px 0;
+}
+
+._1010 {
+    background-position: -242px 0;
+}
+
+._1011 {
+    background-position: -264px 0;
+}
+
+._1100 {
+    background-position: -286px 0;
+}
+
+._1101 {
+    background-position: -308px 0;
+}
+
+._1110 {
+    background-position: -330px 0;
+}
+
+._1111 {
+    background-position: -352px 0;
+}
