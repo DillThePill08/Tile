@@ -1,5 +1,11 @@
 var tileSize = 24 //size to render every tile
-var gridContent = new Array(5).fill(new Array(5).fill(16)) //16 = blank, 0-15 = binary
+var gridContent = [
+    [16,16,16,16,16],
+    [16,16,16,16,16],
+    [16,16,16,16,16],
+    [16,16,16,16,16],
+    [16,16,16,16,16]
+] //16 = blank, 0-15 = binary
 var gridSize = {x:5, y:5} //i'm storing size and content seperately
 var tileSelected = 0
 
@@ -17,7 +23,7 @@ function renderTile(x, y, value, green) { //render a single tile on the grid
     ctx.fillStyle = "#FFFFFF"
     ctx.fillRect(currX, currY, tileSize-2, tileSize-2) //clear all tile content to 16
     if (value != 16) {
-        ctx.fillStyle = "#7F7F7F"
+        ctx.fillStyle = (!value && green ? "#00FF00" : "#7F7F7F")
         ctx.fillRect(tileSize/2+currX-2, currY, 2, tileSize-2)
         ctx.fillRect(currX, tileSize/2+currY-2, tileSize-2, 2)
         const bin = toBin(value) //binary representation of value
@@ -342,10 +348,10 @@ $("export").addEventListener("click", () =>{
 
 $("execute").addEventListener("click", () =>{
     const out = execute(gridContent, $("input").value)
-    if (out[0] === false) { //its the error 
-        output.value = out[1]
+    if (out[0]) { //its not the error 
+        output.value = `Program stopped on ${out[1].x},${out[1].y}\n${out[2]}`
     } else {
-        output.value = `Program stopped on ${out[0].x},${out[0].y}\n${out[1]}`
+        output.value = out[2]
     }
 })
 

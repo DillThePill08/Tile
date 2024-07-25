@@ -262,7 +262,6 @@ function init() { //initialize interpreter
     lastStepJump = false
 
     step(false, true) //first move from start tile
-    if (exit) return [pc.pos, ""] //more than 1 path
 
     //program variables
     out = ""
@@ -278,13 +277,13 @@ function execute(newGrid, newInput) {
     input = newInput
     init()
     if (exit) { //init failed
-        return [false, exitmsg]
+        return [true, pc.pos,""]
     }
 
     while (!exit) {
         executeTile()
     }
-    return [pc.pos, out]
+    return [true, pc.pos, out]
 }
 
 function stepExec(newGrid, newInput) { //stepping the interpreter
@@ -295,7 +294,7 @@ function stepExec(newGrid, newInput) { //stepping the interpreter
     if (!stepping) {
         init()
         if (exit) { //init failed
-            return [0, exitmsg] //0 = fail
+            return [2, pc.pos,""]
         }
         stepping = true
         return [1,pc.pos, out] //1 = currently stepping
