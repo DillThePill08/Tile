@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body id="body">
-        <h1><a href="https://esolangs.org/wiki/Tile">Tile</a> interpreter 2.0</h1>
+        <h1><a href="https://esolangs.org/wiki/Tile">Tile</a> interpreter 2.1</h1>
         <h3>by <a href="https://esolangs.org/wiki/User:Dtp09">dtp09 / dillthepill08</a></h3>
         <br/>
         <label for="size">Tile Size</label>
@@ -25,6 +25,8 @@
         <textarea id="output" disabled="true" rows=4 cols=30></textarea>
         <br/>
         <button id="execute">Execute</button>
+        <button id="step">Step</button>
+        <button id="reset">Reset</button>
         <br/><br/>
         <label for="left">Cycle tiles</label>
         <button id="left">Left</button>
@@ -49,8 +51,8 @@
         QWASE - edit tile<br/>
         Arrows - cycle grid<br/>
         - and = to decrement or increment grid height<br/>
-        [ and ] to decrement or increment grid width<br/><br/>
-        <a href="1.3.1/">Click here for the 1.3.1 interpreter for some reason</a>
+        [ and ] to decrement or increment grid width<br/>
+        \ to step the interpreter
         </p>
         <script src="tile.js"></script>
         <script src="editor.js"></script>

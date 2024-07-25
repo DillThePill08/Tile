@@ -1,11 +1,5 @@
 var tileSize = 24 //size to render every tile
-var gridContent = [
-    [16, 16, 16, 16, 16],
-    [16, 16, 16, 16, 16],
-    [16, 16, 16, 16, 16],
-    [16, 16, 16, 16, 16],
-    [16, 16, 16, 16, 16]
-] //16 = blank, 0-15 = binary
+var gridContent = new Array(5).fill(new Array(5).fill(16)) //16 = blank, 0-15 = binary
 var gridSize = {x:5, y:5} //i'm storing size and content seperately
 var tileSelected = 0
 
@@ -17,7 +11,7 @@ const sctx = selector.getContext("2d")
 const toBin = x => x.toString(2).padStart(4, "0")
 
 //========================================================================
-function renderTile(x, y, value) { //render a single tile on the grid
+function renderTile(x, y, value, green) { //render a single tile on the grid
     const currX = x*tileSize
     const currY = y*tileSize
     ctx.fillStyle = "#FFFFFF"
@@ -29,7 +23,7 @@ function renderTile(x, y, value) { //render a single tile on the grid
         const bin = toBin(value) //binary representation of value
         
         //draw black subtiles
-        ctx.fillStyle = "#000000"
+        ctx.fillStyle = green ? "#00FF00" : "#000000"
         const ss = tileSize/2-2 //subtile space
         const render = (i, rx, ry) => bin[i]=="1" ? ctx.fillRect(rx, ry, ss, ss) : 0 //index of binary, render x coord, render y coord
         render(0, currX, currY)
@@ -262,6 +256,9 @@ document.onkeydown = event =>{ //selector keybinds
             case "]":
                 keyResize($("width"), 1)
                 break
+            case "\\":
+                stepInterpreter()
+                break
         }
     }
 }
@@ -305,8 +302,10 @@ function importCode(code) {
         }
         renderGrid()
     } catch(x) {
-        alert("The code could not be imported.")
-        console.log(x)
+        if (code) {
+            alert("The code could not be imported.")
+            console.log(x)
+        }
     }
 }
 
@@ -348,6 +347,30 @@ $("execute").addEventListener("click", () =>{
     } else {
         output.value = `Program stopped on ${out[0].x},${out[0].y}\n${out[1]}`
     }
+})
+
+function stepInterpreter() {
+    const out = stepExec(gridContent, $("input").value)
+    if (out[0] == 0) { //its the error 
+        output.value = out[1]
+    } else if (out[0] == 1) {
+        output.value = `Current position: ${out[1].x},${out[1].y}\n${out[2]}`
+        renderGrid() //clear last green tile
+        renderTile(out[1].x,out[1].y,gridContent[out[1].x][out[1].y],true)
+    } else {
+        output.value = `Program stopped on ${out[1].x},${out[1].y}\n${out[2]}`
+        renderGrid() //clear last green tile
+    }
+}
+
+$("step").addEventListener("click", () =>{
+    stepInterpreter()
+})
+
+$("reset").addEventListener("click", () =>{
+    const out = resetInterpreter()
+    output.value = `Program stopped on ${out[0].x},${out[0].y}\n${out[1]}`
+    renderGrid() //clear last green tile
 })
 
 //========================================================================
