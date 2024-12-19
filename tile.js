@@ -286,7 +286,7 @@ function execute(newGrid, newInput) {
     return [true, pc.pos, out]
 }
 
-function stepExec(newGrid, newInput) { //stepping the interpreter
+function stepExec(newGrid, newInput, increment) { //stepping the interpreter
     ggrid = newGrid
     gsize = {x:ggrid.length, y:ggrid[0].length} //grid width and height
     input = newInput
@@ -299,7 +299,12 @@ function stepExec(newGrid, newInput) { //stepping the interpreter
         stepping = true
         return [1,pc.pos, out] //1 = currently stepping
     }
-    executeTile()
+    let i = 0
+    while ((i < increment) && !exit) {
+        executeTile()
+        i++
+    }
+    
     if (exit) {
         stepping = false
         return [2,pc.pos, out] //2 = done

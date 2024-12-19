@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body id="body">
-        <h1><a href="https://esolangs.org/wiki/Tile">Tile</a> interpreter 2.1</h1>
+        <h1><a href="https://esolangs.org/wiki/Tile">Tile</a> interpreter 2.2</h1>
         <h3>by <a href="https://esolangs.org/wiki/User:Dtp09">dtp09 / dillthepill08</a></h3>
         <br/>
         <label for="size">Tile Size</label>
@@ -26,6 +26,7 @@
         <br/>
         <button id="execute">Execute</button>
         <button id="step">Step</button>
+        <input type="number" id="increment" min="1" value="1"></input>
         <button id="reset">Reset</button>
         <br/><br/>
         <label for="left">Cycle tiles</label>
@@ -42,17 +43,26 @@
         <br/>
         <button id="resize">Resize</button>
         <br/><br/>
-        <button id="import">Import Code</button>
-        <button id="export">Export Code</button>
+        <button id="import">Load</button>
+        <button id="export">Save</button>
         <br/><br/>
         <label for="exitConfirm">Page Exit Confirmation</label>
         <input id="exitConfirm" type="checkbox" checked="true"></input>
-        <p>keybinds:<br/>
+        <hr/>
+        <p>KEYBINDS<br/><br/>
         QWASE - edit tile<br/>
         Arrows - cycle grid<br/>
         - and = to decrement or increment grid height<br/>
         [ and ] to decrement or increment grid width<br/>
-        \ to step the interpreter
+        \ to step the interpreter<br/>
+        alt right-click to copy grid as image<br/>
+        middle-click to copy tile contents<br/><br/>
+        right-click drag to select area<br/>
+        - CTRL-C to copy<br/>
+        - CTRL-X to cut<br/>
+        - CTRL-V to paste at upper left corner of selection<br/>
+        - BACKSPACE to fill selection<br/>
+        - DEL to fill selection with empty
         </p>
         <script src="tile.js"></script>
         <script src="editor.js"></script>
